@@ -4,7 +4,7 @@ import { Client, DIDSet, Wallet, convertStringToHex } from 'xrpl'
 
 const client = new Client('wss://s.devnet.rippletest.net:51233')
 
-async function setDID(wallet: Wallet, document: any): Promise<void> {
+async function setDID(wallet: Wallet, document: DIDDocument): Promise<void> {
   const jsonDocument = JSON.stringify(document)
   const tx: DIDSet = {
     TransactionType: 'DIDSet',
@@ -32,7 +32,7 @@ describe('xrpl did resolver', () => {
   //   ],
   //   authentication: [`${did}#owner`],
   // }
-  let validResponse: any
+  let validResponse: DIDDocument
 
   let didResolver: Resolvable
 
@@ -70,6 +70,7 @@ describe('xrpl did resolver', () => {
 
   it('fails if the did document is not valid json', async () => {
     expect.assertions(2)
+    // @ts-expect-error -- string instead of valid object to test that error
     await setDID(wallet, 'document')
     const result = await didResolver.resolve(did)
     expect(result.didResolutionMetadata.error).toEqual('unsupportedFormat')
