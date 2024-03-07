@@ -1,7 +1,7 @@
 {
-  "name": "web-did-resolver",
-  "version": "2.0.27",
-  "description": "Resolve DID documents from an https domain",
+  "name": "xrpl-did-resolver",
+  "version": "0.0.1",
+  "description": "Resolve DID documents for XRPL addresses and public keys",
   "type": "module",
   "source": "src/resolver.ts",
   "main": "./lib/resolver.cjs",
@@ -19,40 +19,17 @@
       "import": "./lib/resolver.module.js"
     }
   },
-  "author": "Mike Xu",
+  "author": "Mayukha Vadari",
   "contributors": [
-    "Mircea Nistor <mircea.nistor@mesh.xyz>"
+    "Mayukha Vadari <mvadari@ripple.com>"
   ],
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git@github.com:decentralized-identity/web-did-resolver.git"
+    "url": "git@github.com:mvadari/xrpl-did-resolver.git"
   },
   "dependencies": {
-    "cross-fetch": "^4.0.0",
-    "did-resolver": "^4.0.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:ci": "jest --coverage",
-    "build": "microbundle --compress=false",
-    "format": "prettier --write \"src/**/*.[jt]s\"",
-    "lint": "eslint --ignore-pattern \"src/**/*.test.[jt]s\" \"src/**/*.[jt]s\"",
-    "prepublishOnly": "yarn test:ci && yarn format && yarn lint",
-    "release": "semantic-release --debug"
-  },
-  "jest": {
-    "clearMocks": true,
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!src/**/*.d.ts",
-      "!**/node_modules/**",
-      "!**/__tests__/**"
-    ],
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/__tests__/**/*.test.[jt]s"
-    ]
+    "did-resolver": "^4.1.0",
+    "xrpl": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.24.0",
@@ -74,5 +51,27 @@
     "regenerator-runtime": "0.14.1",
     "semantic-release": "22.0.12",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:ci": "jest --coverage",
+    "build": "microbundle --compress=false",
+    "format": "prettier --write \"src/**/*.[jt]s\"",
+    "lint": "eslint --ignore-pattern \"src/**/*.test.[jt]s\" \"src/**/*.[jt]s\"",
+    "prepublishOnly": "npm test:ci && npm format && npm lint",
+    "release": "semantic-release --debug"
+  },
+  "jest": {
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.[jt]s"
+    ]
   }
 }
