@@ -4,7 +4,7 @@ import { Errors } from './utils'
 
 const XRPL_NODE = 'wss://s.devnet.rippletest.net:51233'
 
-async function getDIDObject(address: string): Promise<LedgerEntry> {
+async function getDIDObject(address: string): Promise<LedgerEntry.DID> {
   const client = new Client(XRPL_NODE)
   await client.connect()
   let result: LedgerEntryResponse
@@ -13,7 +13,7 @@ async function getDIDObject(address: string): Promise<LedgerEntry> {
       command: 'ledger_entry',
       did: address,
     })
-  } catch (e) {
+  } catch (e: any) {
     if (e.message === 'entryNotFound') {
       throw new Error(Errors.notFound)
     }
@@ -23,7 +23,7 @@ async function getDIDObject(address: string): Promise<LedgerEntry> {
     await client.disconnect()
   }
 
-  return result.result.node
+  return result.result.node as unknown as LedgerEntry.DID
 }
 
 async function getDID(address: string): Promise<any> {
@@ -62,7 +62,7 @@ async function processDID(
         },
       }
     }
-  } catch (error) {
+  } catch (error: any) {
     if (error.message === Errors.notFound) {
       return { error: { error: 'notFound', message: 'notFound' } }
     } else {
