@@ -1,0 +1,25 @@
+name: Build and Test NODE
+on: [pull_request, workflow_dispatch, push]
+jobs:
+  build-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "Setup node with cache"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn run build
+      - run: yarn run lint
+      - run: yarn run test:ci
+
+      - name: "Upload coverage reports"
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
