@@ -88,7 +88,7 @@ describe('xrpl did resolver', () => {
     await setDID(wallet, wrongIdResponse)
     const result = await didResolver.resolve(did)
     expect(result.didResolutionMetadata.error).toEqual('notFound')
-    expect(result.didResolutionMetadata.message).toMatch(/DID document id does not match requested did/)
+    expect(result.didResolutionMetadata.message).toMatch(/DID document id does not match requested DID/)
   })
 
   it('returns correct contentType without @context', async () => {
