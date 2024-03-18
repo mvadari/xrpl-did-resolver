@@ -17,5 +17,7 @@
     "@typescript-eslint",
     "jest"
   ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off" // TODO: remove later
+  }
 }
