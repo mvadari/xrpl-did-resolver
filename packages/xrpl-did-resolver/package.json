@@ -40,22 +40,6 @@
     "prepublishOnly": "npm test:ci && npm format && npm lint",
     "release": "semantic-release --debug"
   },
-  "jest": {
-    "clearMocks": true,
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!src/**/*.d.ts",
-      "!**/node_modules/**",
-      "!**/tests/**"
-    ],
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/test/**/*.test.[jt]s"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    }
-  },
   "bugs": {
     "url": "https://github.com/mvadari/xrpl-did-resolver/issues"
   },

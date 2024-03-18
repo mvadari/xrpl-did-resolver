@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "compilerOptions": {
+    "paths": {
+    "xrpl-did-resolver/*": ["./packages/xrpl-did-resolver/src/*"],
+    "xrpl-did-resolver": ["./packages/xrpl-did-resolver/src"],
+  },
+}
+}
