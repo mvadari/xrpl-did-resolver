@@ -58,7 +58,7 @@ async function processDID(
       return {
         error: {
           error: Errors.notFound,
-          message: 'resolver_error: DID document id does not match requested did',
+          message: 'resolver_error: DID document id does not match requested DID',
         },
       }
     }
